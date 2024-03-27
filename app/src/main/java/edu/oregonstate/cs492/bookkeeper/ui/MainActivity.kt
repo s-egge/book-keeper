@@ -70,8 +70,10 @@ class MainActivity : AppCompatActivity() {
         navView.menu.findItem(R.id.submenu_item).title = title
 
         // add book entries to menu
+        val subMenuBooks = books.take(5)
+
         entriesSubMenu?.clear()
-        for (book in books) {
+        for (book in subMenuBooks) {
             entriesSubMenu?.add(book.title)?.setOnMenuItemClickListener {
                 //close drawer
                 drawerLayout.closeDrawers()
