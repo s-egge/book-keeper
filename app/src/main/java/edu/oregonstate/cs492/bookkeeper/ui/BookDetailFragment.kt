@@ -23,7 +23,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.search.SearchBar
 import edu.oregonstate.cs492.bookkeeper.data.Note
 
 class BookDetailFragment : Fragment() {
@@ -67,14 +66,12 @@ class BookDetailFragment : Fragment() {
             binding.bookTitleText.text = it.title
             binding.bookAuthorText.text = it.author
             binding.pagesReadButton.text = getString(R.string.pages_read_button_text, it.pagesRead, it.pageCount)
-            // Now set the rating and summary
-            binding.bookRatingBar.rating = it.rating ?: 0.0f // Assuming 'rating' is a Float, replace with default if null
-            //binding.bookSummaryText.text = it.summary ?: getString(R.string.default_summary) // Assuming 'summary' is a String
+            binding.bookRatingBar.rating = it.rating ?: 0.0f
 
             Glide.with(this)
                 .load(it.coverURL)
-                .placeholder(R.drawable.baseline_book_24)  // Replace 'default_cover' with your actual placeholder image resource
-                .error(R.drawable.baseline_book_24)        // Replace 'default_cover' with your actual error image resource
+                .placeholder(R.drawable.baseline_book_24)
+                .error(R.drawable.baseline_book_24)
                 .into(binding.bookCoverImage)
 
             // Handle 'Add Note' button click
@@ -125,7 +122,7 @@ class BookDetailFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null  // Clear the binding when the view is destroyed.
+        _binding = null
     }
 
 
