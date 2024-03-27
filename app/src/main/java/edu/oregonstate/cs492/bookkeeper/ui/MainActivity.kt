@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                 drawerLayout.closeDrawers()
 
                 //navigate to book detail page
-                val action = LibraryFragmentDirections.actionLibraryFragmentToBookDetailFragment(book)
+                val action = LibraryFragmentDirections.navigateToBookDetails(book)
                 navController.navigate(action)
 
                 true
