@@ -10,13 +10,6 @@
         android:id="@+id/library"
         android:name="edu.oregonstate.cs492.bookkeeper.ui.LibraryFragment"
         android:label="@string/label_library">
-        <action
-            android:id="@+id/action_libraryFragment_to_bookDetailFragment"
-            app:destination="@id/book_details">
-            <argument
-                android:name="bookDetails"
-                app:argType="edu.oregonstate.cs492.bookkeeper.data.LibraryBook" />
-        </action>
     </fragment>
 
     <!-- Browse Books Fragment -->
@@ -41,4 +34,12 @@
         android:id="@+id/search_fragment"
         android:name="edu.oregonstate.cs492.bookkeeper.ui.BrowseBooksFragment"
         android:label="@string/label_browse_books" />
+
+    <action
+        android:id="@+id/navigate_to_book_details"
+        app:destination="@id/book_details">
+        <argument
+            android:name="bookDetails"
+            app:argType="edu.oregonstate.cs492.bookkeeper.data.LibraryBook" />
+    </action>
 </navigation>
