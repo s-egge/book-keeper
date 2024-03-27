@@ -51,27 +51,24 @@
         android:id="@+id/cancel_pages"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:text="Cancel"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        app:strokeColor="@color/red"
-        android:textColor="@color/red"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/save_pages"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/total_pages_et"
-        app:layout_constraintWidth_percent="0.5"/>
+        app:layout_constraintTop_toBottomOf="@id/total_pages_et"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/save_pages"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:text="Save"
         style="@style/Widget.MaterialComponents.Button"
-        app:backgroundTint="@color/green"
         app:layout_constraintStart_toEndOf="@id/cancel_pages"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/total_pages_et"
-        app:layout_constraintWidth_percent="0.5"/>
+        app:layout_constraintTop_toBottomOf="@id/total_pages_et"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

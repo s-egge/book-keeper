@@ -67,9 +67,10 @@
                     android:id="@+id/delete_book_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:iconSize="24dp"
                     app:icon="@drawable/baseline_delete_24"
                     app:iconGravity="textStart"
-                    app:iconTint="@color/red"
+                    app:iconTint="@color/md_theme_light_error"
                     style="@style/Widget.MaterialComponents.Button.TextButton.Icon"/>
             </LinearLayout>
         </LinearLayout>

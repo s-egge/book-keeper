@@ -250,6 +250,9 @@ class BookDetailFragment : Fragment() {
         }
 
         confirmButton.setOnClickListener {
+            // remove observer to prevent app crash
+            viewModel.getBookDetails(book.title, book.author).removeObservers(viewLifecycleOwner)
+
             //delete book from db (notes cascade delete automatically)
             viewModel.removeBook(
                 book.title,
