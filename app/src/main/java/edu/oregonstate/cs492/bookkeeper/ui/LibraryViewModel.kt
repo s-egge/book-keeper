@@ -31,6 +31,12 @@ class LibraryViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
+    fun updateLastViewed(time: Long, title: String, author: String) {
+        viewModelScope.launch {
+            repository.updateLastViewed(time, title, author)
+        }
+    }
+
     fun removeAllBooks(){
         viewModelScope.launch{
             repository.deleteAllBooks()

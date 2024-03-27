@@ -17,4 +17,7 @@ class LibraryRepository (
 
     suspend fun updatePages(title: String, author: String, pagesRead: Int, pageCount: Int) =
         dao.updatePages(title, author, pagesRead, pageCount)
+
+    suspend fun updateLastViewed(time: Long, title: String, author: String) =
+        dao.updateLastViewed(time, title, author)
 }

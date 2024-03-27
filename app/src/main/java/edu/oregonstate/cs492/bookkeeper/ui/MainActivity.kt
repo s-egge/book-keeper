@@ -1,10 +1,14 @@
 package edu.oregonstate.cs492.bookkeeper.ui
 
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.StyleSpan
 import androidx.appcompat.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
-import androidx.core.view.updatePadding
+import androidx.activity.viewModels
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -13,15 +17,15 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import edu.oregonstate.cs492.bookkeeper.R
+import edu.oregonstate.cs492.bookkeeper.data.LibraryBook
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfig: AppBarConfiguration
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navController: NavController
+    private val viewModel: LibraryViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -44,10 +48,40 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfig)
 
         findViewById<NavigationView>(R.id.nav_view)?.setupWithNavController(navController)
+
+        // observe books and update submenu in navdrawer on change
+        viewModel.libraryBooks.observe(this) { books ->
+            addEntriesToDrawer(books)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfig) || super.onSupportNavigateUp()
+    }
+
+    private fun addEntriesToDrawer(books: List<LibraryBook>) {
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        val entriesSubMenu = navView.menu.findItem(R.id.submenu_item).subMenu
+
+        // make "Recently Viewed" title for submenu bold
+        val title = SpannableString(getString(R.string.label_submenu_title))
+        title.setSpan(StyleSpan(Typeface.BOLD), 0, title.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+        navView.menu.findItem(R.id.submenu_item).title = title
+
+        // add book entries to menu
+        entriesSubMenu?.clear()
+        for (book in books) {
+            entriesSubMenu?.add(book.title)?.setOnMenuItemClickListener {
+                //close drawer
+                drawerLayout.closeDrawers()
+
+                //navigate to book detail page
+                val action = LibraryFragmentDirections.actionLibraryFragmentToBookDetailFragment(book)
+                navController.navigate(action)
+
+                true
+            }
+        }
     }
 }

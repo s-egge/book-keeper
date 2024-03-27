@@ -154,7 +154,9 @@ class BrowseBooksFragment : Fragment(R.layout.fragment_browse_books) {
                         book.rating,
                         book.ratingCount,
                         book.amazonLink,
-                        book.pageCount ?: 0
+                        book.pageCount ?: 0,
+                        0,
+                        System.currentTimeMillis()
                     )
                 )
                 snackbarMessage = "added to library"

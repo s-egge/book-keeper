@@ -34,13 +34,7 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
         libraryRecyclerView.adapter = libraryAdapter
         libraryRecyclerView.layoutManager = GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
 
-
-
         viewModel.libraryBooks.observe(viewLifecycleOwner) {books ->
-            Log.d(tag, "\nBooks in library:\n")
-            books.forEach { book ->
-                Log.d(tag, "Book: $book")
-            }
             libraryAdapter.updateLibraryList(books)
         }
     }

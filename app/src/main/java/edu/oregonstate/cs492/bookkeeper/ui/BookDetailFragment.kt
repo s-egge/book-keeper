@@ -59,6 +59,9 @@ class BookDetailFragment : Fragment() {
         // Retrieve the LibraryBook object from the fragment's arguments.
         book = arguments?.getSerializable("bookDetails") as LibraryBook
 
+        // update last viewed time for this book
+        viewModel.updateLastViewed(System.currentTimeMillis(), book.title, book.author)
+
         book.let {
             // Update UI elements with the book details.
             binding.bookTitleText.text = it.title
