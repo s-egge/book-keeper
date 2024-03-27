@@ -258,7 +258,7 @@ class BookDetailFragment : Fragment() {
 
             // navigate back to the library (clear backwards nav first so you can't go back
             // to the book details page of the deleted book)
-            findNavController().popBackStack(R.id.library_fragment, true)
+            findNavController().popBackStack(R.id.library, true)
 
             dialog.dismiss()
         }

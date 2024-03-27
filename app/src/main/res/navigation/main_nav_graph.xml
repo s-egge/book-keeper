@@ -3,29 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/home_page">
-
-    <!-- Home Page Fragment -->
-    <fragment
-        android:id="@+id/home_page"
-        android:name="edu.oregonstate.cs492.bookkeeper.ui.HomePageFragment"
-        android:label="@string/label_home_page" >
-        <action
-            android:id="@+id/navigate_to_library"
-            app:destination="@id/library_fragment" />
-        <action
-            android:id="@+id/navigate_to_browse_books"
-            app:destination="@id/browse_books_fragment" />
-    </fragment>
+    app:startDestination="@id/library">
 
     <!-- Library Fragment (Your Library) -->
     <fragment
-        android:id="@+id/library_fragment"
+        android:id="@+id/library"
         android:name="edu.oregonstate.cs492.bookkeeper.ui.LibraryFragment"
         android:label="@string/label_library">
         <action
             android:id="@+id/action_libraryFragment_to_bookDetailFragment"
-            app:destination="@id/bookDetailFragment">
+            app:destination="@id/book_details">
             <argument
                 android:name="bookDetails"
                 app:argType="edu.oregonstate.cs492.bookkeeper.data.LibraryBook" />
@@ -34,13 +21,13 @@
 
     <!-- Browse Books Fragment -->
     <fragment
-        android:id="@+id/browse_books_fragment"
+        android:id="@+id/browse_books"
         android:name="edu.oregonstate.cs492.bookkeeper.ui.BrowseBooksFragment"
         android:label="@string/label_browse_books" />
 
     <!-- Book Detail Fragment -->
     <fragment
-        android:id="@+id/bookDetailFragment"
+        android:id="@+id/book_details"
         android:name="edu.oregonstate.cs492.bookkeeper.ui.BookDetailFragment"
         android:label="@string/label_book_detail"
         tools:layout="@layout/fragment_book_detail">
