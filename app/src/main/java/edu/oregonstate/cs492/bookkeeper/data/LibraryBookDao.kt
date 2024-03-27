@@ -18,7 +18,7 @@ interface LibraryBookDao {
     @Query("DELETE FROM library")
     suspend fun deleteAll()
 
-    @Query("SELECT * FROM library")
+    @Query("SELECT * FROM library ORDER BY lastViewed DESC")
     fun getAllBooks() : Flow<List<LibraryBook>>
 
     @Query("SELECT * FROM library WHERE title = :title AND author = :author")
@@ -29,4 +29,7 @@ interface LibraryBookDao {
 
     @Query("UPDATE library SET pagesRead = :pagesRead, pageCount = :pageCount WHERE title = :title AND author = :author")
     suspend fun updatePages(title: String, author: String, pagesRead: Int, pageCount: Int)
+
+    @Query("UPDATE library SET lastViewed = :time WHERE title = :title AND author = :author")
+    suspend fun updateLastViewed(time: Long, title: String, author: String)
 }

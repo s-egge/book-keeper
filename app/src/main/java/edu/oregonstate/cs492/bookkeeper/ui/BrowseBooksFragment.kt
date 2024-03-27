@@ -53,25 +53,6 @@ class BrowseBooksFragment : Fragment(R.layout.fragment_browse_books) {
 
         searchBar = view.findViewById(R.id.search_bar)
         searchView = view.findViewById(R.id.search_view)
-        val appBar: MaterialToolbar? = activity?.findViewById(R.id.top_app_bar)
-        val bottomNav: BottomNavigationView? = activity?.findViewById(R.id.bottom_nav)
-
-        // Hide bottom navbar after clicking on searchbar
-        searchView.addTransitionListener { _, _, newState ->
-            if (newState == SearchView.TransitionState.SHOWING) {
-                appBar?.visibility = View.GONE
-                bottomNav?.visibility = View.GONE
-            } else if (newState == SearchView.TransitionState.HIDDEN) {
-                appBar?.visibility = View.VISIBLE
-                /* This can be included if we want the navbar to appear before loading finishes.
-                The issue is that it jumps down from above the keyboard, to the bottom of the screen
-                Felt more jarring than only reappearing after loading.
-
-                bottomNav?.visibility = View.VISIBLE
-            }
-             */
-            }
-        }
 
         searchView
             .editText
@@ -107,7 +88,6 @@ class BrowseBooksFragment : Fragment(R.layout.fragment_browse_books) {
             } else {
                 booksRecyclerView.visibility = View.VISIBLE
                 loadingIndicator.visibility = View.INVISIBLE
-                bottomNav?.visibility = View.VISIBLE
             }
 
 
@@ -174,7 +154,9 @@ class BrowseBooksFragment : Fragment(R.layout.fragment_browse_books) {
                         book.rating,
                         book.ratingCount,
                         book.amazonLink,
-                        book.pageCount ?: 0
+                        book.pageCount ?: 0,
+                        0,
+                        System.currentTimeMillis()
                     )
                 )
                 snackbarMessage = "added to library"

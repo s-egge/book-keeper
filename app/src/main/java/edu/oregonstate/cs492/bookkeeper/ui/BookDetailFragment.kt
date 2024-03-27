@@ -59,6 +59,9 @@ class BookDetailFragment : Fragment() {
         // Retrieve the LibraryBook object from the fragment's arguments.
         book = arguments?.getSerializable("bookDetails") as LibraryBook
 
+        // update last viewed time for this book
+        viewModel.updateLastViewed(System.currentTimeMillis(), book.title, book.author)
+
         book.let {
             // Update UI elements with the book details.
             binding.bookTitleText.text = it.title
@@ -258,7 +261,7 @@ class BookDetailFragment : Fragment() {
 
             // navigate back to the library (clear backwards nav first so you can't go back
             // to the book details page of the deleted book)
-            findNavController().popBackStack(R.id.library_fragment, true)
+            findNavController().popBackStack(R.id.library, true)
 
             dialog.dismiss()
         }

@@ -13,5 +13,7 @@ data class LibraryBook(
     val ratingCount: Int? = null,
     val amazonLink: String? = null,
     val pageCount: Int = 0,
-    val pagesRead: Int = 0
+    val pagesRead: Int = 0,
+    val lastViewed: Long
+
 ) : Serializable
